@@ -1,0 +1,55 @@
+# [리눅스 명령어] awk
+	원본 문서에서 패턴을 검사해 원하는 값을 얻음
+	
+### awk [OPTION] -F 'script' [변수=값] [FILE...]
+### awk [OPTION] -f 스크립트 파일 [변수=값] [FILE...]
+
+- F : 구분자를 나타냄. -F로 구부자를 지정하지 않을 경우에는 공백을 구분자로 지정
+- f : 스크립트 파일을 이용할 경우 사용
+
+file.txt
+```
+1 Lee 30 40 50
+2 Jin 60 70 80
+3 Yong 90 10 20
+```
+
+awk '{print $1, $2}' ./file.txt
+1 Lee
+2 Jin
+3 Yong
+
+awk '{print "no:"$1}' ./file.txt
+no:1
+no:2
+no:3
+
+awk '/Lee/' ./file.txt
+1 Lee 30 40 50
+
+awk '/[2-3]0/' ./file.txt
+1 Lee 30 40 50
+3 prog 90 10 20
+
+awk '$1 == 2 { print $2}' ./file.txt
+Jin
+
+awk '$3 > 70 { print $0}' ./file.txt
+3 Yong 90 10 20
+
+awk '{sum+=$3} END {print "SUM : "sum}' ./file.txt
+SUM : 180
+
+awk '{ for (i=2;i<=NF;i++) total += $i }; END { print "TOTAL : "total }' ./file.txt
+TOTAL : 450
+
+awk '{sum=0}{sum+=($3+$4+$5)}{print $0, sum, sum/3}' ./file.txt
+1 Lee 30 40 50 120 40
+2 Jin 60 70 80 210 70
+3 Yong 90 10 20 120 40
+
+awk 'length($2)>3 {print $0}' ./file.txt
+2 Jin 60 70 80
+3 Yong 90 10 20
+
+> https://recipes4dev.tistory.com/171

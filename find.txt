@@ -1,0 +1,27 @@
+# [리눅스 명령어] find
+	주어진 조건을 검색하여 파일을 찾음
+### find [경로] [옵션] [작업]
+
+- name name : 지정된 이름의 파일을 찾음
+- user name : user 소유의 파일을 찾음
+- type [bcdfls] : 지정된 형식의 파일을 찾음
+	- b : 블록파일
+	- c : 문자
+	- d : 디렉터리
+	- f : 파일
+	- l : 링크파일
+	- s : 소켓
+- size [+/-]n[bckw] : 지정된 크기의 파일을 찾음
+	- +n : n보다 큼
+	- -n : n보다 작음
+	- n : n
+	- b : 512-byte
+	- c : byte
+	- k : kilobytes
+	- w : 2-byte
+	
+- exec command {} \; : 찾은 각 파일에 대해 지정된 명령을 실행
+	> find . -name "test*.txt" -exec cat {} \;
+- ok command {} \; : 실행 여부를 사용자에게 확인한 후 명령을 실행
+	> find . -name "test*.txt" -ok cat {} \;
+
