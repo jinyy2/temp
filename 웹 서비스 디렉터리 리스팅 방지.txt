@@ -1,0 +1,23 @@
+#[리눅스 보안]Apache 디렉터리 리스팅 제거
+
+## 문제
+디렉터리 요청시 해당 디렉터리에 기본문서가 존재하지 않을 경우 디렉터리 내 모든 파일의 목록을 보여주는 기능으로
+디렉터리 검색기능이 활성화되어 있는 경우 WEB서버 구조 노출뿐만 아니라 공개되어서는 안되는 중요 파일이 노출됨
+
+## 해결
+1. 디렉터리 검색 기능 제거 (/Apache_home]/conf/httpd.conf 파일에 설정된 모든 디렉토리의 Options 지시자에서 Indexs 옵션 제거
+수정 전
+<Directory />
+.
+Opions Indexes FollowSymLinks
+.
+.
+</Directory>
+수정 후
+<Directory />
+.
+.
+Opions FollowSymLinks
+.
+</Directory>
+## 정보
