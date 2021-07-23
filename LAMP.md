@@ -133,8 +133,8 @@ vi /home/jinyong/public_html/index.jsp
 	<h1>Apache Tomcat Connection</h1>	
 </body>
 </html>
-
-## DataSource 
+```
+## DataSource
 - DataSource는 서버에서 관리하기 때문에 DB나 JDBC 드라이버가 변경이 수월
 - Connection, Statement 객체를 pooling 할 수 있으며, 분산 트랜잭션을 다룰 수 있음 
 
